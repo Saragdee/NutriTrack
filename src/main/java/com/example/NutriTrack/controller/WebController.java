@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class WebController {
     @GetMapping("/")
-    public String showIndexPage() {
+    public String showAuthenticationPage() {
         //model.addAttribute("name", "");
-        return "index"; // Returns the name of the HTML page without extension
+        return "authentication"; // Returns the name of the HTML page without extension
     }
     @GetMapping("/{pageName}")
     public String showPage(@PathVariable String pageName, Model model) {
