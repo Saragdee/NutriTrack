@@ -21,29 +21,29 @@
                 <div class="form-items">
                     <h3>Daily Food Intake</h3>
                     <p>Fill in the data below.</p>
-                    <form class="requires-validation" novalidate>
+                    <form action="/submitForm" method="post" th:object="${foodConsumption}" class="requires-validation" novalidate>
 
                         <div class="col-md-12 input group">
-                            <input type="text" id="cityInput" class="form-control" placeholder="Enter product name...">
+                            <input type="text" th:field="*{productName}" id="productName" class="form-control" placeholder="Enter product name...">
                         </div>
 
                         <div class="col-md-12 input group">
-                            <input type="text" id="datepicker" class="form-control" th:placeholder="'Select date...'">
+                            <input type="text" th:field="*{date}" id="datepicker" class="form-control" th:placeholder="'Select date...'">
                         </div>
 
 
                         <div class="col-md-12">
-                            <input class="form-control" type="text" pattern="[0-9]*[.,]?[0-9]+" name="quantity" placeholder="Enter quantity..." required>
+                            <input class="form-control" type="text" th:field="*{quantity}" pattern="[0-9]*[.,]?[0-9]+" name="quantity" placeholder="Enter quantity..." required>
                             <div class="valid-feedback">Quantity field is valid!</div>
                             <div class="invalid-feedback">Quantity field cannot be blank!</div>
                         </div>
                         <div class="col-md-12 mt-3">
                             <label class="mb-3 mr-1" >Quantity: </label>
 
-                            <input type="radio" class="btn-check" name="quantity" id="units" autocomplete="off" required>
+                            <input type="radio" class="btn-check" name="unit" th:field="*{unit}" id="units" autocomplete="off" required>
                             <label class="btn btn-sm btn-outline-secondary" for="units">Units</label>
 
-                            <input type="radio" class="btn-check" name="quantity" id="grams" autocomplete="off" required>
+                            <input type="radio" class="btn-check" name="unit" th:field="*{unit}" id="grams" autocomplete="off" required>
                             <label class="btn btn-sm btn-outline-secondary" for="grams">Grams</label>
 
                             <div class="valid-feedback mv-up">You selected quantity type!</div>

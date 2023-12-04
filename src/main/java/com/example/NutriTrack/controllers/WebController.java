@@ -1,4 +1,4 @@
-package com.example.NutriTrack.controller;
+package com.example.NutriTrack.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
