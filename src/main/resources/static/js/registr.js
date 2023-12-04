@@ -1,19 +1,5 @@
 
 // Replace this with your actual api/database data --------->>>> anastasia to do
-const settings = {
-	async: true,
-	crossDomain: true,
-	url: 'https://weatherapi-com.p.rapidapi.com/current.json?q=53.1%2C-0.13',
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '51f047c0c1msh6c7ac033ccf3686p13d27ejsnc2ecd06142c2',
-		'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
-	}
-};
-
-$.ajax(settings).done(function (response) {
-	console.log(response);
-});
 
 $(document).ready(function() {
     var cities = ['New York', 'Los Angeles', 'London', 'Paris', 'Tokyo']; // Replace with your city data
