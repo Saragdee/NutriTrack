@@ -35,3 +35,24 @@ $(document).ready(function() {
         autoclose: true // Close the picker after selection
     });
 });
+
+$('#foodInput').autocomplete({
+        source: function (request, response) {
+            const autocompleteUrl = `https://t14ha70d-usda-v1.p.rapidapi.com/content/Topics?api_key=ahhIVmBfBY6PQ3fNGmHjvSQlWZLnY6aUUBBByGlW&q=${request.term}`;
+
+            // Fetch data from USDA API based on user input
+            fetch(autocompleteUrl, options)
+                .then(response => response.json())
+                .then(data => {
+                    // Extract relevant data for autocomplete suggestions
+                    const suggestions = data.map(item => item.name);
+                    response(suggestions);
+                })
+                .catch(error => {
+                    console.error(error);
+                    response([]); // Return an empty array on error
+                });
+        },
+        minLength: 1, // Minimum characters before triggering autocomplete
+        delay: 300 // Delay in milliseconds before sending the request
+    });
