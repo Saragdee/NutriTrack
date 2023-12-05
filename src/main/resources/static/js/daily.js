@@ -1,57 +1,85 @@
-// Initialize Datepicker using jQuery
-const url = 'https://t14ha70d-usda-v1.p.rapidapi.com/content/Topics?api_key=ahhIVmBfBY6PQ3fNGmHjvSQlWZLnY6aUUBBByGlW&id=1';
-const options = {
-  method: 'GET',
-  headers: {
-    'X-RapidAPI-Key': '51f047c0c1msh6c7ac033ccf3686p13d27ejsnc2ecd06142c2',
-    'X-RapidAPI-Host': 't14ha70d-usda-v1.p.rapidapi.com'
-  }
-};
+  $(document).ready(function() {
+            $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd', // Define the date format
+                autoclose: true // Close the picker after selection
+            });
 
-try {
-  const response = await fetch(url, options);
-  const result = await response.json();
-  console.log(result);
-} catch (error) {
-  console.error(error)
+        $(document).ready(function() {
+            // Initialize Autocomplete
+            $('#cityInput').autocomplete({
+                source: function (request, response) {
+                    const apiKey = 'ahhIVmBfBY6PQ3fNGmHjvSQlWZLnY6aUUBBByGlW';
+                    const autocompleteUrl = `https://api.nal.usda.gov/fdc/v1/foods/search?query=${request.term}&api_key=${apiKey}`;
 
+                    $.ajax({
+                        url: autocompleteUrl,
+                        method: 'GET',
+                        success: function (data) {
+                            if (data.foods) {
+                                const foodNames = data.foods.map(food => food.description);
+                                response(foodNames);
+                            } else {
+                                response([]); // No results
+                            }
+                        },
+                        error: function (error) {
+                            console.error('Error fetching food data:', error);
+                            response([]); // Return an empty array on error
+                        }
+                    });
+                },
+                minLength: 1, // Minimum characters before triggering autocomplete
+                delay: 300 // Delay in milliseconds before sending the request
+            });
 
-// Example: How to use the USDA API with user input
-const userInput = prompt('Enter the food you ate:');
-const searchUrl = `https://t14ha70d-usda-v1.p.rapidapi.com/content/Topics?api_key=ahhIVmBfBY6PQ3fNGmHjvSQlWZLnY6aUUBBByGlW&q=${userInput}`;
+            // Handle button click
+            $('#searchButton').on('click', function() {
+                searchFood();
+            });
+        });
 
-try {
-  const searchResponse = await fetch(searchUrl, options);
-  const searchResult = await searchResponse.json();
-  console.log(searchResult);
-} catch (error) {
-  console.error(error);
-}
+        function searchFood() {
+            const apiKey = 'ahhIVmBfBY6PQ3fNGmHjvSQlWZLnY6aUUBBByGlW';
+            const foodInput = $('#cityInput').val();
 
-$(document).ready(function() {
-    $('#datepicker').datepicker({
-        format: 'yyyy-mm-dd', // Define the date format
-        autoclose: true // Close the picker after selection
-    });
-});
+            if (!foodInput) {
+                alert('Please enter a food');
+                return;
+            }
 
-$('#foodInput').autocomplete({
-        source: function (request, response) {
-            const autocompleteUrl = `https://t14ha70d-usda-v1.p.rapidapi.com/content/Topics?api_key=ahhIVmBfBY6PQ3fNGmHjvSQlWZLnY6aUUBBByGlW&q=${request.term}`;
+            const apiEndpoint = `https://api.nal.usda.gov/fdc/v1/foods/search?query=${foodInput}&api_key=ahhIVmBfBY6PQ3fNGmHjvSQlWZLnY6aUUBBByGlW`;
 
-            // Fetch data from USDA API based on user input
-            fetch(autocompleteUrl, options)
-                .then(response => response.json())
-                .then(data => {
-                    // Extract relevant data for autocomplete suggestions
-                    const suggestions = data.map(item => item.name);
-                    response(suggestions);
-                })
-                .catch(error => {
-                    console.error(error);
-                    response([]); // Return an empty array on error
-                });
-        },
-        minLength: 1, // Minimum characters before triggering autocomplete
-        delay: 300 // Delay in milliseconds before sending the request
-    });
+            $.ajax({
+                url: apiEndpoint,
+                method: 'GET',
+                success: function (data) {
+                    displayResults(data);
+                },
+                error: function (error) {
+                    console.error('Error fetching food data:', error);
+                    alert('Error fetching food data. Please try again.');
+                }
+            });
+        }
+
+        function displayResults(data) {
+            const resultsContainer = $('#foodResults');
+            resultsContainer.empty();
+
+            if (data.foods && data.foods.length > 0) {
+                const food = data.foods[0];
+                const nutrients = food.foodNutrients;
+
+                const resultHtml = `
+                    <h3>${food.description}</h3>
+                    <ul>
+                        ${nutrients.map(nutrient => `<li>${nutrient.nutrientName}: ${nutrient.value} ${nutrient.unitName}</li>`).join('')}
+                    </ul>
+                `;
+
+                resultsContainer.html(resultHtml);
+            } else {
+                resultsContainer.html('<p>No results found</p>');
+            }
+        }
+   });
