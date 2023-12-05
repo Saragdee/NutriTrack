@@ -1,9 +1,16 @@
 package com.example.NutriTrack.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
+
+@Getter
+@Setter
+@Entity
+@Table(name = "recommendations")
 public class Recommendation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

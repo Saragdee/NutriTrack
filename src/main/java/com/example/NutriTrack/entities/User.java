@@ -20,7 +20,7 @@ public class User {
     private Integer weight;
     private String gender;
     private String location;
-    private String act_level;
+    private String activityLevel;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Allergy> allergies;

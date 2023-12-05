@@ -22,33 +22,37 @@
                     <h3>Register Today</h3>
                     <p>Fill in the data below.</p>
                     <form action="/register" th:action="@{/register}" th:object="${user}" method="post" class="requires-validation" novalidate>
+
                         <div class="col-md-12">
                             <input class="form-control" th:field="*{username}" type="text" name="username" placeholder="Username" required>
                             <div class="valid-feedback">Username field is valid!</div>
                             <div class="invalid-feedback">Username field cannot be blank!</div>
                         </div>
+
                         <div class="col-md-12">
-                            <input class="form-control" type="password" name="password" placeholder="Password" required>
+                            <input class="form-control" th:field="*{password}" type="password" name="password" placeholder="Password" required>
                             <div class="valid-feedback">Password field is valid!</div>
                             <div class="invalid-feedback">Password field cannot be blank!</div>
                         </div>
+
                         <div class="col-md-12">
-                            <input class="form-control" type="text" pattern="[0-9]*[.,]?[0-9]+" name="weight" placeholder="Your weight in kg" required>
+                            <input class="form-control" th:field="*{weight}" type="text" pattern="[0-9]*[.,]?[0-9]+" name="weight" placeholder="Your weight in kg" required>
                             <div class="valid-feedback">Weight field is valid!</div>
                             <div class="invalid-feedback">Weight field cannot be blank!</div>
                         </div>
+
+<!--                        <div class="col-md-12 input group">-->
+<!--                            <input type="text" th:field="*{city}" class="form-control" name="city" placeholder="Enter city name...">-->
+<!--                        </div>-->
                         <div class="col-md-12 input group">
-                            <input type="text" id="cityInput" class="form-control" placeholder="Enter city name...">
+                            <input type="text" th:field="*{allergies}" class="form-control" name="allergies" placeholder="Enter allergies...">
                         </div>
                         <div class="col-md-12 input group">
-                            <input type="text" id="allergiesInput" class="form-control" placeholder="Enter allergies...">
-                        </div>
-                        <div class="col-md-12 input group">
-                            <input type="text" id="supplementsInput" class="form-control" placeholder="Enter supplements...">
+                            <input type="text" th:field="*{supplements}" class="form-control" name="supplements" placeholder="Enter supplements...">
                         </div>
 
                         <div class="col-md-12">
-                            <select class="form-select mt-3" required>
+                            <select class="form-select mt-3" th:field="*{activityLevel}" name="activityLevel" required>
                                 <option selected disabled value="">Activity level</option>
                                 <option value="light" title="Activities such as casual walking, light household chores, or leisurely stretching.">Light Physical Activity </option>
                                 <option value="moderate" title="Activities like brisk walking, cycling at a moderate pace, or swimming.">Moderate Physical Activity </option>
@@ -61,13 +65,13 @@
                         <div class="col-md-12 mt-3">
                             <label class="mb-3 mr-1">Gender: </label>
 
-                            <input type="radio" class="btn-check" name="gender" id="male" autocomplete="off" required>
+                            <input type="radio" th:field="*{gender}" class="btn-check" name="gender" value="male" id="male" autocomplete="off" required>
                             <label class="btn btn-sm btn-outline-secondary" for="male">Male</label>
 
-                            <input type="radio" class="btn-check" name="gender" id="female" autocomplete="off" required>
+                            <input type="radio" th:field="*{gender}" class="btn-check" name="gender" value="female" id="female" autocomplete="off" required>
                             <label class="btn btn-sm btn-outline-secondary" for="female">Female</label>
 
-                            <input type="radio" class="btn-check" name="gender" id="secret" autocomplete="off" required>
+                            <input type="radio" th:field="*{gender}" class="btn-check" name="gender" value="secret" id="secret" autocomplete="off" required>
                             <label class="btn btn-sm btn-outline-secondary" for="secret">Secret</label>
                             <div class="valid-feedback mv-up">You selected a gender!</div>
                             <div class="invalid-feedback mv-up">Please select a gender!</div>
@@ -78,7 +82,6 @@
                             <label class="form-check-label">I confirm that all data are correct</label>
                             <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
                         </div>
-
 
                         <div class="form-button mt-3">
                             <button id="submit" type="submit" class="btn btn-primary">Register</button>
