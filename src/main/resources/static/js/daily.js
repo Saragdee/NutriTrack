@@ -13,8 +13,7 @@ try {
   const result = await response.json();
   console.log(result);
 } catch (error) {
-  console.error(error);
-}
+  console.error(error)
 
 
 // Example: How to use the USDA API with user input
