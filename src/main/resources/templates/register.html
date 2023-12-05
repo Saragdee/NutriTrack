@@ -45,18 +45,52 @@
 <!--                            <input type="text" th:field="*{city}" class="form-control" name="city" placeholder="Enter city name...">-->
 <!--                        </div>-->
                         <div class="col-md-12 input group">
-                            <input type="text" th:field="*{allergies}" class="form-control" name="allergies" placeholder="Enter allergies..." list="allergiesList">
-                            <datalist id="allergiesList">
-                                <option th:each="allergy : ${allergyList}" th:text="${allergy}"></option>
-                            </datalist>
+                            <div class="dropdown">
+                                <input type="text" id="allergiesInput" class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" placeholder="Select allergies...">
+                                <ul class="dropdown-menu" aria-labelledby="allergiesInput" id="allergiesDropdown" style="display: none; max-height: 200px; overflow-y: auto;">
+                                    <li><label><input type="checkbox" value="Peanuts"> Peanuts</label></li>
+                                    <li><label><input type="checkbox" value="Shellfish"> Shellfish</label></li>
+                                    <li><label><input type="checkbox" value="Milk"> Milk</label></li>
+                                    <li><label><input type="checkbox" value="Eggs"> Eggs</label></li>
+                                    <li><label><input type="checkbox" value="Soy"> Soy</label></li>
+                                    <li><label><input type="checkbox" value="Wheat"> Wheat</label></li>
+                                    <li><label><input type="checkbox" value="Fish"> Fish</label></li>
+                                    <li><label><input type="checkbox" value="Tree nuts"> Tree nuts</label></li>
+                                    <li><label><input type="checkbox" value="Gluten"> Gluten</label></li>
+                                    <li><label><input type="checkbox" value="Sesame seeds"> Sesame seeds</label></li>
+                                    <li><label><input type="checkbox" value="Mustard"> Mustard</label></li>
+                                    <li><label><input type="checkbox" value="Corn"> Corn</label></li>
+                                    <li><label><input type="checkbox" value="Lupin"> Lupin</label></li>
+                                    <li><label><input type="checkbox" value="Celery"> Celery</label></li>
+                                </ul>
+                            </div>
                         </div>
 
+                        <input type="hidden" id="displayAllergies">
+
+
                         <div class="col-md-12 input group">
-                            <input type="text" th:field="*{supplements}" class="form-control" name="supplements" placeholder="Enter supplements..." list="supplementsList">
-                            <datalist id="supplementsList">
-                                <option th:each="supplement : ${supplementList}" th:text="${supplement}"></option>
-                            </datalist>
+                            <div class="dropdown">
+                                <input type="text" id="supplementsInput" class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" placeholder="Select supplements...">
+                                <ul class="dropdown-menu" aria-labelledby="supplementsInput" id="supplementsDropdown" style="display: none; max-height: 200px; overflow-y: auto;">
+                                    <li><label><input type="checkbox" value="Vitamin D"> Vitamin D</label></li>
+                                    <li><label><input type="checkbox" value="Vitamin C"> Vitamin C</label></li>
+                                    <li><label><input type="checkbox" value="Calcium"> Calcium</label></li>
+                                    <li><label><input type="checkbox" value="Iron"> Iron</label></li>
+                                    <li><label><input type="checkbox" value="Omega-3 Fatty Acids"> Omega-3 Fatty Acids</label></li>
+                                    <li><label><input type="checkbox" value="Probiotics"> Probiotics</label></li>
+                                    <li><label><input type="checkbox" value="Multivitamins"> Multivitamins</label></li>
+                                    <li><label><input type="checkbox" value="Magnesium"> Magnesium</label></li>
+                                    <li><label><input type="checkbox" value="Zinc"> Zinc</label></li>
+                                    <li><label><input type="checkbox" value="Biotin"> Biotin</label></li>
+                                    <li><label><input type="checkbox" value="Melatonin"> Melatonin</label></li>
+                                    <li><label><input type="checkbox" value="Glucosamine"> Glucosamine</label></li>
+                                    <!-- Add other supplement options as needed -->
+                                </ul>
+                            </div>
                         </div>
+
+                        <input type="hidden" id="displaySupplements">
 
                         <div class="col-md-12">
                             <select class="form-select mt-3" th:field="*{activityLevel}" name="activityLevel" required>
@@ -100,6 +134,7 @@
     </div>
 </div>
 <!-- Link to your external JS file -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/registr.js"></script>
 </body>
 </html>
