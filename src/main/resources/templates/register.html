@@ -45,10 +45,17 @@
 <!--                            <input type="text" th:field="*{city}" class="form-control" name="city" placeholder="Enter city name...">-->
 <!--                        </div>-->
                         <div class="col-md-12 input group">
-                            <input type="text" th:field="*{allergies}" class="form-control" name="allergies" placeholder="Enter allergies...">
+                            <input type="text" th:field="*{allergies}" class="form-control" name="allergies" placeholder="Enter allergies..." list="allergiesList">
+                            <datalist id="allergiesList">
+                                <option th:each="allergy : ${allergyList}" th:text="${allergy}"></option>
+                            </datalist>
                         </div>
+
                         <div class="col-md-12 input group">
-                            <input type="text" th:field="*{supplements}" class="form-control" name="supplements" placeholder="Enter supplements...">
+                            <input type="text" th:field="*{supplements}" class="form-control" name="supplements" placeholder="Enter supplements..." list="supplementsList">
+                            <datalist id="supplementsList">
+                                <option th:each="supplement : ${supplementList}" th:text="${supplement}"></option>
+                            </datalist>
                         </div>
 
                         <div class="col-md-12">
