@@ -19,33 +19,18 @@ public class FoodConsumptionController {
     @Autowired
     private FoodConsumptionRepository foodConsumptionRepository;
 
-    @GetMapping("/showForm")
+    @GetMapping("/logfood")//logfood
     public String showForm(Model model) {
         // Create a new instance of FoodConsumption and add it to the model
         FoodConsumption foodConsumption = new FoodConsumption(); // Or fetch from a service/DB
         model.addAttribute("foodConsumption", foodConsumption);
         return "dailyintake"; // The name of your Thymeleaf template for the form
     }
-    @ModelAttribute("foodConsumption")
-    public FoodConsumption foodConsumption() {
-        return new FoodConsumption();
-    }
-    @PostMapping("/submitForm")
-    public String submitForm(@ModelAttribute("foodConsumption") FoodConsumption foodConsumption, BindingResult bindingResult, Model model) {
-        model.addAttribute("foodConsumption", foodConsumption);
-        FoodConsumption savedFoodConsumption = foodConsumptionRepository.save(foodConsumption);
-        // Additional operations if needed (e.g., data manipulation, validation, etc.)
-        // ...
-        if(bindingResult.hasErrors()){
-            System.out.println("There was a error "+bindingResult);
-
-            return "index";
-        }
-        // Add attributes to the model for the view
-        model.addAttribute("savedFoodConsumption", savedFoodConsumption);
-        model.addAttribute("message", "Form submitted successfully!");
-
-        return "success"; // Return the appropriate view
+    @PostMapping("/logfood")
+    public String submitForm(@ModelAttribute("foodConsumption") FoodConsumption foodConsumption) {
+        System.out.println(foodConsumption);
+        foodConsumptionRepository.save(foodConsumption);
+        return "dailyintake"; // Return the appropriate view
     }
 
 }

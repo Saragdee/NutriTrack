@@ -36,7 +36,7 @@ p {
 p:last-child {
     font-style: italic;
     color: #888;
-    text-align: center;
+
 }
 
 /* Set the container height to 100% and flexbox layout */

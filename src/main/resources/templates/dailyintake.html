@@ -21,7 +21,7 @@
                 <div class="form-items">
                     <h3>Daily Food Intake</h3>
                     <p>Fill in the data below.</p>
-                    <form action="/submitForm" method="post" th:object="${foodConsumption}" class="requires-validation" novalidate>
+                    <form action="#" th:action="@{/logfood}" method="post" th:object="${foodConsumption}" class="requires-validation" novalidate>
 
                         <div class="col-md-12 input group">
                             <input type="text" th:field="*{productName}" id="productName" class="form-control" placeholder="Enter product name...">
@@ -40,10 +40,10 @@
                         <div class="col-md-12 mt-3">
                             <label class="mb-3 mr-1" >Quantity: </label>
 
-                            <input type="radio" class="btn-check" name="unit" th:field="*{unit}" id="units" autocomplete="off" required>
+                            <input type="radio" class="btn-check" name="unit" th:field="*{unit}" id="units" value="units" autocomplete="off" required>
                             <label class="btn btn-sm btn-outline-secondary" for="units">Units</label>
 
-                            <input type="radio" class="btn-check" name="unit" th:field="*{unit}" id="grams" autocomplete="off" required>
+                            <input type="radio" class="btn-check" name="unit" th:field="*{unit}" id="grams" value="grams" autocomplete="off" required>
                             <label class="btn btn-sm btn-outline-secondary" for="grams">Grams</label>
 
                             <div class="valid-feedback mv-up">You selected quantity type!</div>

@@ -1,4 +1,4 @@
-package com.example.NutriTrack;
+package com.example.NutriTrack.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
