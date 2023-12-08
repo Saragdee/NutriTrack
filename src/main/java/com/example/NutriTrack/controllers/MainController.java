@@ -1,4 +1,4 @@
-package com.example.NutriTrack;
+package com.example.NutriTrack.controllers;
 
 import com.example.NutriTrack.model.Users;
 import com.example.NutriTrack.repo.UserRepository;
