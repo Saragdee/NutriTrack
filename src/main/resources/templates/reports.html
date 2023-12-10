@@ -3,39 +3,58 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Welcome to NutriTrack Application</title>
-    <link rel="stylesheet" href="/css/reports.css"> <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to your external CSS file -->
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    <style>
+        /* Additional Custom Styles */
+        body {
+          background-color: #f8f9fa;
+        }
+        .auth-container {
+          max-width: 400px;
+          margin: 0 auto;
+          margin-top: 100px;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
 
-<div class="container mt-5 full-height-container form-wrapper">
-    <h1>Generate Report</h1>
-
-    <!-- Report Generation Form -->
-    <form id="reportForm">
-        <div class="col-md-4 form-group">
-            <label for="datePicker">Select Date:</label>
-            <input type="date" class="form-control" id="datePicker" name="selectedDate">
+<div class="container auth-container">
+    <h1 class="text-center mb-4">Generate Report</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form id="reportForm">
+                <div class="form-group text-center">
+                    <label for="datePicker">Select Date:</label>
+                    <input type="date" class="mt-2 form-control text-center" id="datePicker" name="selectedDate">
+                </div>
+                <div class="form-group text-center">
+                    <label>Select Report Duration:</label><br>
+                    <div class="btn-group" role="group" aria-label="Report Duration">
+                        <input class="btn-check" type="radio" name="reportDuration" id="todayRadio" autocomplete="off" required>
+                        <label class="btn btn-sm btn-outline-secondary" for="todayRadio">Today</label>
+                        <input class="btn-check" type="radio" name="reportDuration" id="weekRadio" autocomplete="off" required>
+                        <label class="btn btn-sm btn-outline-secondary" for="weekRadio">Week</label>
+                        <input class="btn-check" type="radio" name="reportDuration" id="monthRadio" autocomplete="off" required>
+                        <label class="btn btn-sm btn-outline-secondary" for="monthRadio">Month</label>
+                    </div>
+                </div>
+                <div class="form-group text-center mt-2">
+                    <button type="submit" class="btn btn-primary">Generate Report</button>
+                </div>
+            </form>
         </div>
-
-        <div class="mt-2 form-group">
-            <label>Select Report Duration:</label><br>
-
-                <input class="btn-check" type="radio" name="reportDuration" id="todayRadio" autocomplete="off" required>
-                <label class="btn btn-sm btn-outline-secondary" for="todayRadio">Today</label>
-
-                <input class="btn-check" type="radio" name="reportDuration" id="weekRadio" autocomplete="off" required>
-                <label class="btn btn-sm btn-outline-secondary" for="weekRadio">Week</label>
-
-                <input class="btn-check" type="radio" name="reportDuration" id="monthRadio" autocomplete="off" required>
-                <label class="btn btn-sm btn-outline-secondary" for="monthRadio">Month</label>
-
-        </div>
-        <button type="submit" class="mt-2 btn btn-primary">Generate Report</button>
-    </form>
+    </div>
 </div>
+
+
+
+
 <!-- Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
