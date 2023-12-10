@@ -1,9 +1,16 @@
-/* CSS for background image */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
+
 body {
-  background-image: url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with your image URL */
-  background-size: cover;
-  background-repeat: no-repeat;
-  /* You can add more styles here as needed */
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    background-image: url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with your image URL */
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .custom-field {
   display: block;

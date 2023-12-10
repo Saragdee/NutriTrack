@@ -2,6 +2,8 @@ package com.example.NutriTrack.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "foodconsumption")
 public class FoodConsumption {
@@ -12,12 +14,14 @@ public class FoodConsumption {
 
     @Column(name = "food_name")
     private String productName;
+    @Column(name = "sup_name")
+    private String supNameFromAPI;
     @Column(name = "log_date")
     private String date;
-    @Column(name = "food_quant")
-    private double quantity;
-    @Column(name = "food_unit")
-    private String unit;
+    @Column(name = "sup_quant")
+    private String supQuantFromAPI;
+    @Column(name = "attr_id")
+    private Long attrIdFromAPI;
 
     public Long getId() {
         return id;
@@ -39,20 +43,27 @@ public class FoodConsumption {
         this.date = date;
     }
 
-    public double getQuantity() {
-        return quantity;
+    public String getSupNameFromAPI() {
+        return supNameFromAPI;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public void setSupNameFromAPI(String supNameFromAPI) {
+        this.supNameFromAPI = supNameFromAPI;
     }
 
-    public String getUnit() {
-        return unit;
+    public String getSupQuantFromAPI() {
+        return supQuantFromAPI;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
+    public void setSupQuantFromAPI(String supQuantFromAPI) {
+        this.supQuantFromAPI = supQuantFromAPI;
     }
-    // Getters and setters
+
+    public Long getAttrIdFromAPI() {
+        return attrIdFromAPI;
+    }
+
+    public void setAttrIdFromAPI(Long attrIdFromAPI) {
+        this.attrIdFromAPI = attrIdFromAPI;
+    }
 }

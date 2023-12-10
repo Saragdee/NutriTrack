@@ -20,4 +20,7 @@ public @Data class Users {
     private String gender;
 
     private String location;
+
+    public void setUsername(String name) {
+    }
 }
