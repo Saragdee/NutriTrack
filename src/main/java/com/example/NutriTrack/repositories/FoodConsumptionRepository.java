@@ -1,10 +1,8 @@
-package com.example.NutriTrack.repo;
+package com.example.NutriTrack.repositories;
 
 
-import com.example.NutriTrack.model.FoodConsumption;
+import com.example.NutriTrack.entities.FoodConsumption;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.UUID;
 
 public interface FoodConsumptionRepository extends JpaRepository<FoodConsumption, Integer> {
     // Add custom query methods if needed

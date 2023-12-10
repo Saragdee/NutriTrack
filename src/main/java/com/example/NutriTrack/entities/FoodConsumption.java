@@ -1,4 +1,4 @@
-package com.example.NutriTrack.model;
+package com.example.NutriTrack.entities;
 
 import jakarta.persistence.*;
 
