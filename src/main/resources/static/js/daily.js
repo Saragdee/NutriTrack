@@ -73,7 +73,7 @@ $(document).ready(function() {
             var nutrients = '';
             filteredNutrients.forEach(function(nutrient) {
             var attrInfo = nutrientInfo[nutrient.attr_id];
-            nutrients += `<li>${attrInfo.name}: ${nutrient.value} ${attrInfo.unit}</li>`;
+            nutrients += `<li>${nutrient.attr_id} ${attrInfo.name}: ${nutrient.value} ${attrInfo.unit}</li>`;
             });
 
             if (nutrients !== '') {

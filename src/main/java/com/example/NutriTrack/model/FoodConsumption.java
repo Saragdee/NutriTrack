@@ -2,37 +2,38 @@ package com.example.NutriTrack.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Table(name = "foodconsumption")
 public class FoodConsumption {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "FoodID")
-    private Long id;
+    @Column
+    private int id;
 
-    @Column(name = "food_name")
-    private String productName;
-    @Column(name = "sup_name")
-    private String supNameFromAPI;
+    @Column(name = "attr_id")
+    private Long attrId;
+
     @Column(name = "log_date")
     private String date;
     @Column(name = "sup_quant")
-    private String supQuantFromAPI;
-    @Column(name = "attr_id")
-    private Long attrIdFromAPI;
+    private String value;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public String getProductName() {
-        return productName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public Long getAttrId() {
+        return attrId;
+    }
+
+    public void setAttrId(Long attrId) {
+        this.attrId = attrId;
     }
 
     public String getDate() {
@@ -43,27 +44,11 @@ public class FoodConsumption {
         this.date = date;
     }
 
-    public String getSupNameFromAPI() {
-        return supNameFromAPI;
+    public String getValue() {
+        return value;
     }
 
-    public void setSupNameFromAPI(String supNameFromAPI) {
-        this.supNameFromAPI = supNameFromAPI;
-    }
-
-    public String getSupQuantFromAPI() {
-        return supQuantFromAPI;
-    }
-
-    public void setSupQuantFromAPI(String supQuantFromAPI) {
-        this.supQuantFromAPI = supQuantFromAPI;
-    }
-
-    public Long getAttrIdFromAPI() {
-        return attrIdFromAPI;
-    }
-
-    public void setAttrIdFromAPI(Long attrIdFromAPI) {
-        this.attrIdFromAPI = attrIdFromAPI;
+    public void setValue(String value) {
+        this.value = value;
     }
 }

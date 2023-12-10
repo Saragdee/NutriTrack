@@ -22,7 +22,7 @@
                     <form action="#" th:action="@{/logfood}" method="post" th:object="${foodConsumption}" class="requires-validation" novalidate>
 
                         <div class="col-md-12 input group">
-                            <input type="text" th:field="*{productName}" id="productName" class="form-control" placeholder="Enter product name and its quantity...">
+                            <input type="text" id="productName" class="form-control" placeholder="Enter product name and its quantity...">
 
                         </div>
                         <div class="form-button mt-3">
@@ -31,9 +31,7 @@
                         <div>
                             <h3 id="nutrientsHeading" style="display: none;">Nutrients Information:</h3>
                             <ul id="nutrientsList"></ul>
-                            <input type="hidden" th:field="*{attrIdFromAPI}" id="attrId">
-                            <input type="hidden" th:field="*{supNameFromAPI}" id="supName">
-                            <input type="hidden" th:field="*{supQuantFromAPI}" id="supQuant">
+
 
                         </div>
                         <div class="col-md-12 input group">
