@@ -24,6 +24,40 @@ $(document).ready(function() {
     317: { name: 'Selenium', unit: 'µg' }
     };
 
+    // Function to extract the date from the datepicker field
+    function getDateFromPicker() {
+//        var date = $('#datepicker').val();
+        return "10-12-2023";
+    }
+
+    // Function to extract the date from the nutrientsList (if needed)
+    function getFoodConsumptionList() {
+        // Get the HTML content from the nutrientsList
+        var nutrientsHTML = $('#nutrientsList').html();
+
+        // Parse the HTML content to extract nutrient details
+        var nutrients = [];
+        $(nutrientsHTML).find('li').each(function() {
+            var nutrientInfo = $(this).text(); // Get the text content of each <li> element
+
+            // Split the text to extract individual nutrient information
+            var parts = nutrientInfo.split(':');
+            if (parts.length === 2) {
+                var attrId = parts[0].substring(0,3);
+                var nutrientValue = parts[1].split(' ')[1].trim();
+                nutrients.push({ attrId: attrId, value: nutrientValue });
+            }
+        });
+
+        // Output the extracted nutrients
+        for (nutrient of nutrients) {
+            console.log('Extracted nutrient:', nutrient.attrId);
+            console.log('Extracted value:', nutrient.value);
+        }
+
+        return nutrients; // Return the list of nutrients
+    }
+
     $('#fetchNutrients').on('click', function() {
       event.preventDefault(); // Prevent form submission
 
@@ -57,7 +91,48 @@ $(document).ready(function() {
               $('#nutrientsList').html('<li>Error fetching nutrients. Please try again.</li>');
             }
         });
+        console.log('food consumption list', nutrientsHeading);
+    });
 
+    $('#submit').on('click', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get the date from the datepicker field
+        var dateFromPicker = getDateFromPicker();
+
+        // Get the food consumption list
+        var foodConsumptionList = getFoodConsumptionList();
+        for (food in foodConsumptionList) {
+            food.date = "12/10/2023"
+        }
+
+        for (food in foodConsumptionList) {
+            console.log('date', food.date);
+            console.log('value', food.value);
+            console.log('attrId', food.attrId);
+        }
+
+        // Prepare data for submission
+        var formData = foodConsumptionList
+
+        // Perform AJAX POST request to your Java endpoint
+        $.ajax({
+            type: 'POST',
+            url: '/logfood', // Your Java endpoint URL
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function(response) {
+                // Handle success response, if needed
+                console.log('Submission successful:', response);
+            },
+            error: function(error) {
+                // Handle error response, if needed
+                console.error('Error submitting form:', error);
+            }
+        });
+
+        // If needed, you can submit the form after AJAX request completion
+        // $('#yourFormId').submit();
     });
 
     function displayNutrients(foods) {

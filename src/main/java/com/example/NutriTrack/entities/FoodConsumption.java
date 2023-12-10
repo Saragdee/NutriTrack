@@ -2,6 +2,7 @@ package com.example.NutriTrack.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,6 +20,10 @@ public class FoodConsumption {
     private String date;
     @Column(name = "sup_quant")
     private String value;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "UserID")
+    private User user;
 
     public int getId() {
         return id;
