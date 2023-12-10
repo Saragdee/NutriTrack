@@ -9,29 +9,34 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Integer userID;
+    private Integer UserID;
+
     private String username;
+
     private String password;
+
     private Integer weight;
+
     private String gender;
+
     private String location;
+
+
     private String activityLevel;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Allergy> allergies;
+    private String allergies;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Supplement> supplements;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Recommendation> recommendations;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Report> reports;
+    private String supplements;
+//
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<Recommendation> recommendations;
+//
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<Report> reports;
 
 }

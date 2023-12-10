@@ -3,11 +3,10 @@ package com.example.NutriTrack.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 @Getter
 @Setter
 @Entity
-@Table(name = "allergies")
+@Table(name = "Allergies")
 public class Allergy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
