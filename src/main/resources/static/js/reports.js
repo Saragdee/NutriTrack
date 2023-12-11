@@ -26,6 +26,8 @@ $(document).ready(function() {
 
   // Function to create or update the chart
   function createOrUpdateChart(data) {
+    // Show the chart container
+    $('#nutrientContainer').show();
     // Assuming 'data' is the response containing NutrientInfo
     console.log("data", data);
 
