@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="/css/addtabs.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Include jQuery and jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Typeahead Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Register Today</h3>
+                    <p>Fill in the data below.</p>
+                    <form action="/register" th:action="@{/register}" th:object="${user}" method="post" class="requires-validation" novalidate>
+                        <div class="col-md-12">
+                            <input class="form-control" th:field="*{username}" type="text" name="username" placeholder="Username" required>
+                            <div class="valid-feedback">Username field is valid!</div>
+                            <div class="invalid-feedback">Username field cannot be blank!</div>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="form-control" th:field="*{password}" type="password" name="password" placeholder="Password" required>
+                            <div class="valid-feedback">Password field is valid!</div>
+                            <div class="invalid-feedback">Password field cannot be blank!</div>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="form-control" th:field="*{weight}" type="text" pattern="[0-9]*[.,]?[0-9]+" name="weight" placeholder="Your weight in kg" required>
+                            <div class="valid-feedback">Weight field is valid!</div>
+                            <div class="invalid-feedback">Weight field cannot be blank!</div>
+                        </div>
+                        <!--                        <div class="col-md-12 input group">-->
+                        <!--                            <input type="text" th:field="*{city}" class="form-control" name="city" placeholder="Enter city name...">-->
+                        <!--                        </div>-->
+                        <div class="col-md-12 input group">
+                            <input type="text" th:field="*{allergies}" class="form-control" name="allergies" placeholder="Enter allergies...">
+                        </div>
+                        <div class="col-md-12 input group">
+                            <input type="text" th:field="*{supplements}" class="form-control" name="supplements" placeholder="Enter supplements...">
+                        </div>
+
+                        <div class="col-md-12">
+                            <select class="form-select mt-3" th:field="*{activityLevel}" name="activityLevel" required>
+                                <option selected disabled value="">Activity level</option>
+                                <option value="light" title="Activities such as casual walking, light household chores, or leisurely stretching.">Light Physical Activity </option>
+                                <option value="moderate" title="Activities like brisk walking, cycling at a moderate pace, or swimming.">Moderate Physical Activity </option>
+                                <option value="vigorous" title="Activities such as running, intense aerobic exercises, or playing sports.">Vigorous Physical Activity </option>
+                            </select>
+                            <div class="valid-feedback">You selected a position!</div>
+                            <div class="invalid-feedback">Please select a position!</div>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <label class="mb-3 mr-1">Gender: </label>
+                            <input type="radio" th:field="*{gender}" class="btn-check" name="gender" value="male" id="male" autocomplete="off" required>
+                            <label class="btn btn-sm btn-outline-secondary" for="male">Male</label>
+                            <input type="radio" th:field="*{gender}" class="btn-check" name="gender" value="female" id="female" autocomplete="off" required>
+                            <label class="btn btn-sm btn-outline-secondary" for="female">Female</label>
+                            <input type="radio" th:field="*{gender}" class="btn-check" name="gender" value="secret" id="secret" autocomplete="off" required>
+                            <label class="btn btn-sm btn-outline-secondary" for="secret">Secret</label>
+                            <div class="valid-feedback mv-up">You selected a gender!</div>
+                            <div class="invalid-feedback mv-up">Please select a gender!</div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label">I confirm that all data are correct</label>
+                            <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
+                        </div>
+                        <div class="form-button mt-3">
+                            <button id="submit" type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Link to your external JS file -->
+<script src="/js/registr.js"></script>
+</body>
+</html>

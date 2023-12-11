@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Welcome to NutriTrack Application</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to your external CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<h1 th:text="${name}"/>
+
+<div class="container-fluid h-100">
+    <div class="mt-5 mb-5 row h-100 align-items-center justify-content-center">
+        <div class="col-2 text-center">
+            <img src="img/logo.jpg" alt="Logo" class="img-fluid">
+        </div>
+    </div>
+</div>
+<div class="container d-flex justify-content-center align-items-center vh-40">
+    <div class="row col-12 col-md-4">
+        <div class="col text-center">
+            <div class="form">
+                <a href="/logfood" class="custom-field intake">Daily Food Intake</a>
+                <a href="/recommendations" class="custom-field recommendations">Recommendations</a>
+                <a href="/reports" class="custom-field intake">Reports</a>
+                <a href="/profile" class="custom-field recommendations">My Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
