@@ -1,11 +1,9 @@
 package com.example.NutriTrack.domain;
 
-import java.util.List;
-
 public class FoodConsumptionRequest {
     private String date;
 
-    private String value;
+    private Float value;
 
     private String attrId;
 
@@ -27,11 +25,11 @@ public class FoodConsumptionRequest {
         this.attrId = attrId;
     }
 
-    public String getValue() {
+    public Float getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Float value) {
         this.value = value;
     }
 }

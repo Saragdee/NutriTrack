@@ -28,7 +28,8 @@
     <h1 class="text-center mb-4">Generate Report</h1>
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form id="reportForm">
+            <form id="reportForm" > <!-- Assuming method is GET -->
+
                 <div class="form-group text-center">
                     <label for="datePicker">Select Date:</label>
                     <input type="date" class="mt-2 form-control text-center" id="datePicker" name="selectedDate">
@@ -47,9 +48,35 @@
                 <div class="form-group text-center mt-2">
                     <button type="submit" class="btn btn-primary">Generate Report</button>
                 </div>
+
             </form>
+
+
         </div>
     </div>
+</div>
+
+<div class="table-container">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Attribute ID</th>
+            <th>Supplement Name</th>
+            <th>Supplement Unit</th>
+            <th>Female Dosage</th>
+            <th>Male Dosage</th>
+            <th>Your Dosage</th>
+        </tr>
+        <tr th:each="supplement : ${supplements}">
+            <td th:text="${supplement.attr_id}"></td>
+            <td th:text="${supplement.sup_name}"></td>
+            <td th:text="${supplement.sup_unit}"></td>
+            <td th:text="${supplement.f_dosage}"></td>
+            <td th:text="${supplement.m_dosage}"></td>
+            <td th:text="${dosageMap[supplement.attr_id]}"></td>
+        </tr>
+        </thead>
+    </table>
 </div>
 
 

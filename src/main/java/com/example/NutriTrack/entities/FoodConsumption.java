@@ -2,8 +2,7 @@ package com.example.NutriTrack.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.Date;
 
 @Entity
 @Table(name = "foodconsumption")
@@ -14,12 +13,12 @@ public class FoodConsumption {
     private int id;
 
     @Column(name = "attr_id")
-    private Long attrId;
+    private Integer attrId;
 
     @Column(name = "log_date")
-    private String date;
+    private Date date;
     @Column(name = "sup_quant")
-    private String value;
+    private Float value;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UserID")
@@ -33,27 +32,27 @@ public class FoodConsumption {
         this.id = id;
     }
 
-    public Long getAttrId() {
+    public Integer getAttrId() {
         return attrId;
     }
 
-    public void setAttrId(Long attrId) {
+    public void setAttrId(Integer attrId) {
         this.attrId = attrId;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getValue() {
+    public Float getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Float value) {
         this.value = value;
     }
 }

@@ -22,26 +22,25 @@ public class FoodConsumptionController {
     @Autowired
     private FoodConsumptionRepository foodConsumptionRepository;
 
-    @GetMapping("/logfood")//logfood
+    @GetMapping("/logfood")
     public String showForm(Model model) {
-        // Create a new instance of FoodConsumption and add it to the model
-        FoodConsumption foodConsumption = new FoodConsumption(); // Or fetch from a service/DB
+        FoodConsumption foodConsumption = new FoodConsumption();
         model.addAttribute("foodConsumption", foodConsumption);
-        return "dailyintake"; // The name of your Thymeleaf template for the form
+        return "dailyintake";
     }
     @PostMapping("/logfood")
-    public String submitForm(@RequestBody List<FoodConsumptionRequest> foodConsumptionRequestList) {
+    public String submitForm(@RequestBody List<FoodConsumptionRequest> foodConsumptionRequestList, Model model) {
         List<FoodConsumption> foodConsumptionList = new ArrayList<>();
         for (FoodConsumptionRequest foodConsumptionRequest : foodConsumptionRequestList) {
-            FoodConsumption foodConsumption = FoodConsumptionMapper.mapToFoodConsumption(foodConsumptionRequest);
             foodConsumptionList.add(FoodConsumptionMapper.mapToFoodConsumption(foodConsumptionRequest));
-
         }
+
+        FoodConsumption foodConsumption = new FoodConsumption();
+        model.addAttribute("foodConsumption", foodConsumption);
 
         foodConsumptionRepository.saveAll(foodConsumptionList);
 
-        // Your logic to save data or perform operations based on 'request'
-        return "dailyintake"; // Return the appropriate view
+        return "dailyintake";
     }
 
 }

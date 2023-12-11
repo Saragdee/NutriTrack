@@ -26,36 +26,30 @@ $(document).ready(function() {
 
     // Function to extract the date from the datepicker field
     function getDateFromPicker() {
-//        var date = $('#datepicker').val();
-        return "10-12-2023";
+        return $('#datepicker').val();
     }
 
-    // Function to extract the date from the nutrientsList (if needed)
     function getFoodConsumptionList() {
-        // Get the HTML content from the nutrientsList
-        var nutrientsHTML = $('#nutrientsList').html();
+        let nutrientsHTML = $('#nutrientsList').html();
+        console.log('nutrientsHTML:', nutrientsHTML);
 
-        // Parse the HTML content to extract nutrient details
-        var nutrients = [];
+        let nutrients = [];
         $(nutrientsHTML).find('li').each(function() {
-            var nutrientInfo = $(this).text(); // Get the text content of each <li> element
+            let nutrientInfo = $(this).text();
+            console.log('nutrientInfo:', nutrientInfo);
 
-            // Split the text to extract individual nutrient information
-            var parts = nutrientInfo.split(':');
+            let parts = nutrientInfo.split(':');
+            console.log('parts:', parts);
+
             if (parts.length === 2) {
-                var attrId = parts[0].substring(0,3);
-                var nutrientValue = parts[1].split(' ')[1].trim();
+                let attrId = parts[0].substring(0, 3);
+                let nutrientValue = parts[1].split(' ')[1].trim();
                 nutrients.push({ attrId: attrId, value: nutrientValue });
             }
         });
 
-        // Output the extracted nutrients
-        for (nutrient of nutrients) {
-            console.log('Extracted nutrient:', nutrient.attrId);
-            console.log('Extracted value:', nutrient.value);
-        }
-
-        return nutrients; // Return the list of nutrients
+        console.log('nutrients:', nutrients);
+        return nutrients;
     }
 
     $('#fetchNutrients').on('click', function() {
@@ -98,22 +92,13 @@ $(document).ready(function() {
         event.preventDefault(); // Prevent default form submission
 
         // Get the date from the datepicker field
-        var dateFromPicker = getDateFromPicker();
+        const dateFromPicker = getDateFromPicker();
 
         // Get the food consumption list
-        var foodConsumptionList = getFoodConsumptionList();
-        for (food in foodConsumptionList) {
-            food.date = "12/10/2023"
+        let formData = getFoodConsumptionList();
+        for (let food of formData) {
+            food.date = dateFromPicker;
         }
-
-        for (food in foodConsumptionList) {
-            console.log('date', food.date);
-            console.log('value', food.value);
-            console.log('attrId', food.attrId);
-        }
-
-        // Prepare data for submission
-        var formData = foodConsumptionList
 
         // Perform AJAX POST request to your Java endpoint
         $.ajax({
