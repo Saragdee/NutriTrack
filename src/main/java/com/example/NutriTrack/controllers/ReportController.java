@@ -42,8 +42,8 @@ public class ReportController {
     @PostMapping("/reports")
     @ResponseBody
     public Map<String, Object> generateReport(@RequestParam("selectedDate") String selectedDate,
-                                 @RequestParam("reportDuration") String reportDuration,
-                                 Model model) {
+                                              @RequestParam("reportDuration") String reportDuration,
+                                              Model model) {
 
         LocalDate endDate = LocalDate.parse(selectedDate);
         LocalDate startDate = null;
@@ -51,11 +51,14 @@ public class ReportController {
         try {
             switch (reportDuration) {
                 case "today":
-                    startDate = endDate;
+                    startDate = endDate.minusDays(1);
+                    break;
                 case "week":
-                    startDate = endDate.minusDays(6); // Assuming a week is 7 days
+                    startDate = endDate.minusDays(7); // Assuming a week is 7 days
+                    break;
                 case "month":
                     startDate = endDate.minusMonths(1).minusDays(1); // Last day of the month
+                    break;
                 default:
                     throw new IllegalArgumentException("Invalid reportDuration" + reportDuration);
             }
