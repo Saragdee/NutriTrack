@@ -1,6 +1,10 @@
 package com.example.NutriTrack.controllers;
 
 
+import com.example.NutriTrack.domain.FoodConsumptionRequest;
+import com.example.NutriTrack.entities.FoodConsumption;
+import com.example.NutriTrack.mapper.FoodConsumptionMapper;
+import com.example.NutriTrack.repositories.FoodConsumptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
