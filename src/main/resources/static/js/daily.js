@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var nutrientInfo = {
+    const nutrientInfo = {
     301: { name: 'Calcium, Ca', unit: 'mg' },
     303: { name: 'Iron, Fe', unit: 'mg' },
     324: { name: 'Vitamin D', unit: 'IU' },
@@ -54,7 +54,7 @@ $(document).ready(function() {
 
     $('#fetchNutrients').on('click', function() {
       event.preventDefault(); // Prevent form submission
-
+      $('#successMessage').hide();
       var foodQuery = $('#productName').val();
       var nutrientsHeading = $('#nutrientsHeading');
       // Extract nutrients data and store in an array
@@ -70,7 +70,7 @@ $(document).ready(function() {
             data: JSON.stringify({ query: foodQuery }),
             success: function(response) {
                 displayNutrients(response.foods);
-                nutrientsHeading.show(); // Show the heading after successful fetch
+                // Show the heading after successful fetch
 
                 // Assuming API response structure is an array of objects with attr_id, sup_name, and value
                 var selectedFood = response.foods[0]; // Assuming only one food is selected
@@ -79,6 +79,7 @@ $(document).ready(function() {
                 $('#attrId').val(selectedFood.attr_id);
                 $('#supName').val(selectedFood.sup_name);
                 $('#supQuant').val(selectedFood.value);
+                nutrientsHeading.show();
             },
             error: function(error) {
               console.error('Error fetching nutrients:', error);
@@ -108,6 +109,7 @@ $(document).ready(function() {
             data: JSON.stringify(formData),
             success: function(response) {
                 // Handle success response, if needed
+                $('#successMessage').show();
                 console.log('Submission successful:', response);
             },
             error: function(error) {
@@ -146,7 +148,7 @@ $(document).ready(function() {
     }
 
     $('#datepicker').datepicker({
-        format: 'yyyy-mm-dd', // Define the date format
+        format: 'dd/MM/yyyy', // Define the date format
         autoclose: true // Close the picker after selection
     });
 });

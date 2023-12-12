@@ -3,14 +3,10 @@ package com.example.NutriTrack.mapper;
 import com.example.NutriTrack.domain.FoodConsumptionRequest;
 import com.example.NutriTrack.entities.FoodConsumption;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class FoodConsumptionMapper {
-
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
     public static FoodConsumption mapToFoodConsumption(FoodConsumptionRequest request) {
         FoodConsumption foodConsumption = new FoodConsumption();
 
@@ -20,7 +16,8 @@ public class FoodConsumptionMapper {
             Float value = Float.valueOf(request.getValue());
             foodConsumption.setValue(value);
 
-            Date date = dateFormat.parse(request.getDate());
+            DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/uuuu");
+            LocalDate date = LocalDate.parse(request.getDate(), formatters);
             foodConsumption.setDate(date);
         } catch (Exception e) {
             e.printStackTrace();

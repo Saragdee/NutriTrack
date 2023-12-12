@@ -3,7 +3,7 @@ package com.example.NutriTrack.domain;
 public class FoodConsumptionRequest {
     private String date;
 
-    private Float value;
+    private String value;
 
     private String attrId;
 
@@ -25,11 +25,11 @@ public class FoodConsumptionRequest {
         this.attrId = attrId;
     }
 
-    public Float getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(Float value) {
+    public void setValue(String value) {
         this.value = value;
     }
 }

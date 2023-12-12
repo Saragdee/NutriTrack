@@ -1,4 +1,4 @@
-//import com.example.NutriTrack.repositories.UserRepository;
+package com.example.NutriTrack.service;//import com.example.NutriTrack.repositories.UserRepository;
 //import org.springframework.security.core.userdetails.User;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;

@@ -2,7 +2,7 @@ package com.example.NutriTrack.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "foodconsumption")
@@ -16,7 +16,7 @@ public class FoodConsumption {
     private Integer attrId;
 
     @Column(name = "log_date")
-    private Date date;
+    private LocalDate date;
     @Column(name = "sup_quant")
     private Float value;
 
@@ -40,11 +40,11 @@ public class FoodConsumption {
         this.attrId = attrId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
